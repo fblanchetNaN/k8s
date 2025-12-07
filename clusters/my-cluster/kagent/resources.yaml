@@ -16,6 +16,7 @@ metadata:
   name: kagent
   namespace: kagent
 spec:
+  interval: 1m0s
   type: "oci"
   url: oci://ghcr.io/kagent-dev/kagent/helm
 ---
@@ -28,6 +29,7 @@ metadata:
   name: kagent-cdrs
   namespace: kagent
 spec:
+  interval: 1m0s
   chart: kagent-cdrs
   sourceRef:
     kind: HelmRepository
@@ -42,6 +44,7 @@ metadata:
   name: kagent
   namespace: kagent
 spec:
+  interval: 1m0s
   chart: kagent
   sourceRef:
     kind: HelmRepository
