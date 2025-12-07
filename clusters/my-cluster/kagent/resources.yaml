@@ -59,6 +59,35 @@ spec:
         kind: HelmRepository
         name: kagent
   releaseName: kagent
+values:
+  agents:
+    k8s-agent:
+      enabled: false
+    kgateway-agent:
+      enabled: false
+    istio-agent:
+      enabled: false
+    promql-agent:
+      enabled: false
+    observability-agent:
+      enabled: false
+    argo-rollouts-agent:
+      enabled: false
+    helm-agent:
+      enabled: false
+    cilium-policy-agent:
+      enabled: false
+    cilium-manager-agent:
+      enabled: false
+    cilium-debug-agent:
+      enabled: false
+    cilium-policy-agent:
+      enabled: false
+  tools:
+    grafana-mcp:
+      enabled: false
+    querydoc:
+      enabled: false
 ---
 apiVersion: kagent.dev/v1alpha2
 kind: ModelConfig
