@@ -81,8 +81,6 @@ values:
       enabled: false
     cilium-debug-agent:
       enabled: false
-    cilium-policy-agent:
-      enabled: false
   tools:
     grafana-mcp:
       enabled: false
