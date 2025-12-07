@@ -1,0 +1,48 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  labels:
+    app.kubernetes.io/instance: kagent-system
+    app.kubernetes.io/part-of: kagent
+  name: kagent
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  labels:
+    app.kubernetes.io/instance: kagent-system
+    app.kubernetes.io/part-of: kagent
+  name: kagent
+  namespace: kagent
+spec:
+  type: "oci"
+  url: oci://ghcr.io/kagent-dev/kagent/helm
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmChart
+metadata:
+  labels:
+    app.kubernetes.io/instance: kagent-system
+    app.kubernetes.io/part-of: kagent
+  name: kagent-cdrs
+  namespace: kagent
+spec:
+  chart: kagent-cdrs
+  sourceRef:
+    kind: HelmRepository
+    name: kagent
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmChart
+metadata:
+  labels:
+    app.kubernetes.io/instance: kagent-system
+    app.kubernetes.io/part-of: kagent
+  name: kagent
+  namespace: kagent
+spec:
+  chart: kagent
+  sourceRef:
+    kind: HelmRepository
+    name: kagent
