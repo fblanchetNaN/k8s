@@ -30,7 +30,7 @@ metadata:
   namespace: kagent
 spec:
   interval: 1m0s
-  chart: kagent-cdrs
+  chart: kagent-crds
   sourceRef:
     kind: HelmRepository
     name: kagent
