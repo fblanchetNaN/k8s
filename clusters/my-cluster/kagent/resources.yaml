@@ -20,8 +20,8 @@ spec:
   type: "oci"
   url: oci://ghcr.io/kagent-dev/kagent/helm
 ---
-apiVersion: source.toolkit.fluxcd.io/v1
-kind: HelmChart
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
 metadata:
   labels:
     app.kubernetes.io/instance: kagent-system
@@ -30,13 +30,17 @@ metadata:
   namespace: kagent
 spec:
   interval: 1m0s
-  chart: kagent-crds
-  sourceRef:
-    kind: HelmRepository
-    name: kagent
+  chart:
+    spec:
+      interval: 1m0s
+      chart: kagent-crds
+      sourceRef:
+        kind: HelmRepository
+        name: kagent
+  releaseName: kagent-crds
 ---
-apiVersion: source.toolkit.fluxcd.io/v1
-kind: HelmChart
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
 metadata:
   labels:
     app.kubernetes.io/instance: kagent-system
@@ -45,7 +49,13 @@ metadata:
   namespace: kagent
 spec:
   interval: 1m0s
-  chart: kagent
-  sourceRef:
-    kind: HelmRepository
-    name: kagent
+  dependsOn:
+    - name: kagent-crds
+  chart:
+    spec:
+      interval: 1m0s
+      chart: kagent
+      sourceRef:
+        kind: HelmRepository
+        name: kagent
+  releaseName: kagent
