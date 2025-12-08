@@ -95,7 +95,7 @@ metadata:
 spec:
   apiKeySecret: vercel-provider
   apiKeySecretKey: ${VERCEL_API_KEY}
-  model: "openai/gpt-5"
+  model: "gpt-5"
   provider: OpenAI
   openAI:
     baseUrl: "https://ai-gateway.vercel.sh/v1"
