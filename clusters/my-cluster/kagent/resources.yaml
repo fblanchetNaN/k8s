@@ -94,8 +94,8 @@ metadata:
   namespace: kagent
 spec:
   apiKeySecret: vercel-provider
-  apiKeySecretKey: ${VERCEL_API_KEY}
-  model: gpt-4.1-mini
+  apiKeySecretKey: VERCEL_API_KEY
+  model: "openai/gpt-5"
   provider: OpenAI
   openAI:
     baseUrl: "https://ai-gateway.vercel.sh/v1"
