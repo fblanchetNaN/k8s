@@ -93,15 +93,16 @@ metadata:
   labels:
     app.kubernetes.io/instance: kagent-system
     app.kubernetes.io/part-of: kagent
-  name: vercel-config
+  name: vercel-gpt-5.1-thinking-config
   namespace: kagent
 spec:
   apiKeySecret: vercel-provider
   apiKeySecretKey: VERCEL_API_KEY
-  model: "openai/gpt-5.1-thinking"
+  model: openai/gpt-5.1-thinking
   provider: OpenAI
   openAI:
     baseUrl: "https://ai-gateway.vercel.sh/v1"
+    reasoningEffort: high
 ---
 apiVersion: kagent.dev/v1alpha2
 kind: Agent
@@ -113,20 +114,17 @@ metadata:
   namespace: kagent
 spec:
   declarative:
-    modelConfig: vercel-config
-    stream: true
+    modelConfig: vercel-gpt-5.1-thinking-config
     systemMessage: |-
-      You're a helpful agent, made by the kagent team.
+      You're a helpful chatbot.
 
       # Instructions
-          - If user question is unclear, ask for clarification before running any tools
+          - If user question is unclear, ask for clarification before answering
           - Always be helpful and friendly
           - If you don't know how to answer the question DO NOT make things up, tell the user "Sorry, I don't know how to answer that" and ask them to clarify the question further
-          - If you are unable to help, or something goes wrong, refer the user to https://kagent.dev for more information or support.
 
       # Response format:
           - ALWAYS format your response as Markdown
-          - Your response will include a summary of actions you took and an explanation of the result
-          - If you created any artifacts such as files or resources, you will include those in your response as well
+          - Your response will include an explanation of the answer
   description: Chatbot
   type: Declarative
