@@ -122,6 +122,7 @@ spec:
     spec:
       interval: 1m0s
       chart: agentgateway-crds
+      version: 'v2.2.0-beta.3'
       sourceRef:
         kind: HelmRepository
         name: agentgateway
@@ -143,6 +144,7 @@ spec:
     spec:
       interval: 1m0s
       chart: agentgateway
+      version: 'v2.2.0-beta.3'
       sourceRef:
         kind: HelmRepository
         name: agentgateway
