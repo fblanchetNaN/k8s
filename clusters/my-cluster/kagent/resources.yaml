@@ -122,6 +122,7 @@ spec:
     spec:
       interval: 1m0s
       chart: agentgateway-crds
+      version: 'v2.1.2'
       sourceRef:
         kind: HelmRepository
         name: agentgateway
@@ -136,15 +137,18 @@ metadata:
   name: agentgateway
   namespace: agentgateway
 spec:
+  dependsOn:
+    - name: agentgateway-crds
   interval: 1m0s
   chart:
     spec:
       interval: 1m0s
       chart: agentgateway
+      version: 'v2.1.2'
       sourceRef:
         kind: HelmRepository
         name: agentgateway
-  releaseName: agentgateway-crds
+  releaseName: agentgateway
 ---
 apiVersion: kagent.dev/v1alpha2
 kind: ModelConfig
