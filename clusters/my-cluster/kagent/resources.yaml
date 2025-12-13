@@ -7,6 +7,14 @@ metadata:
     app.kubernetes.io/part-of: kagent
   name: kagent
 ---
+apiVersion: v1
+kind: Namespace
+metadata:
+  labels:
+    app.kubernetes.io/instance: agentgateway-system
+    app.kubernetes.io/part-of: agentgateway
+  name: kgateway
+---
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
@@ -19,6 +27,19 @@ spec:
   interval: 1m0s
   type: "oci"
   url: oci://ghcr.io/kagent-dev/kagent/helm
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  labels:
+    app.kubernetes.io/instance: agentgateway-system
+    app.kubernetes.io/part-of: agentgateway
+  name: kagent
+  namespace: kagent
+spec:
+  interval: 1m0s
+  type: "oci"
+  url: oci://cr.kgateway.dev/kgateway-dev/charts
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
@@ -86,6 +107,44 @@ spec:
         enabled: false
       querydoc:
         enabled: false
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  labels:
+    app.kubernetes.io/instance: agentgateway-system
+    app.kubernetes.io/part-of: agentgateway
+  name: agentgateway-crds
+  namespace: agentgateway
+spec:
+  interval: 1m0s
+  chart:
+    spec:
+      interval: 1m0s
+      chart: agentgateway-crds
+      sourceRef:
+        kind: HelmRepository
+        name: agentgateway
+  releaseName: agentgateway-crds
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  labels:
+    app.kubernetes.io/instance: agentgateway-system
+    app.kubernetes.io/part-of: agentgateway
+  name: agentgateway
+  namespace: agentgateway
+spec:
+  interval: 1m0s
+  chart:
+    spec:
+      interval: 1m0s
+      chart: agentgateway
+      sourceRef:
+        kind: HelmRepository
+        name: agentgateway
+  releaseName: agentgateway-crds
 ---
 apiVersion: kagent.dev/v1alpha2
 kind: ModelConfig
