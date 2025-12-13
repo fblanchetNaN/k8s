@@ -39,7 +39,7 @@ metadata:
 spec:
   interval: 1m0s
   type: "oci"
-  url: oci://cr.kgateway.dev/kgateway-dev/charts
+  url: oci://ghcr.io/kgateway-dev/charts
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
@@ -122,7 +122,6 @@ spec:
     spec:
       interval: 1m0s
       chart: agentgateway-crds
-      version: 'v2.1.2'
       sourceRef:
         kind: HelmRepository
         name: agentgateway
@@ -144,7 +143,6 @@ spec:
     spec:
       interval: 1m0s
       chart: agentgateway
-      version: 'v2.1.2'
       sourceRef:
         kind: HelmRepository
         name: agentgateway
