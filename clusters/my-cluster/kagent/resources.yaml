@@ -127,6 +127,10 @@ spec:
         kind: HelmRepository
         name: agentgateway
   releaseName: agentgateway-crds
+  values:
+    controller:
+      image:
+        pullPolicy: Always
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
@@ -149,6 +153,10 @@ spec:
         kind: HelmRepository
         name: agentgateway
   releaseName: agentgateway
+  values:
+    controller:
+      image:
+        pullPolicy: Always
 ---
 apiVersion: kagent.dev/v1alpha2
 kind: ModelConfig
