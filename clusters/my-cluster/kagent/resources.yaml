@@ -5,7 +5,7 @@ metadata:
   labels:
     app.kubernetes.io/instance: agent-system
     app.kubernetes.io/part-of: agent
-  name: agent
+  name: agent-system
 ---
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
