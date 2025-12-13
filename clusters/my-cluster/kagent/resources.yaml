@@ -13,7 +13,7 @@ metadata:
   labels:
     app.kubernetes.io/instance: agentgateway-system
     app.kubernetes.io/part-of: agentgateway
-  name: kgateway
+  name: agentgateway
 ---
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
@@ -34,8 +34,8 @@ metadata:
   labels:
     app.kubernetes.io/instance: agentgateway-system
     app.kubernetes.io/part-of: agentgateway
-  name: kagent
-  namespace: kagent
+  name: agentgateway
+  namespace: agentgateway
 spec:
   interval: 1m0s
   type: "oci"
